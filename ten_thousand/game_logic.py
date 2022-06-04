@@ -2,8 +2,12 @@
 import random
 import itertools
 
+
 class GameLogic:
-    def __init__(self, ):
+    """docstring"""
+
+    def __init__(self):
+        pass
 
     @staticmethod  # input: tuple of integers that represent six dice roll
     def calculate_score(self, roll):
@@ -16,7 +20,25 @@ class GameLogic:
         # output: tuple with random values between 1 and 6
         # len() of tuple must match len() of input
 
+
 class Banker:
+    """docstring"""
+
+    def __init__(self):
+        pass
+
+    def shelf(self):  # input: amount of points(integer) to add to shelf
+        pass  # output: no return, temporarily stores unbanked points
+
+    def bank(self):  # takes shelf points and adds to total bank, resets shelf to 0
+        pass  # output: sum of bank and shelf
+
+    def clear_shelf(self):  # clear shelf points
+        pass
+
+
+
+
 
 
 
