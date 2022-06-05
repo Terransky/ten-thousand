@@ -25,6 +25,43 @@ class GameLogic:
         # output: tuple with random values between 1 and 6, representing fresh rolls
         # len() of tuple must match len() of input
 
+    @staticmethod
+    def checkScore(dice_roll_tuple):
+        dice_roll = list(dice_roll_tuple)
+        print(dice_roll)
+        score = 0
+        #count stores the number of times a specific score has been rolled in the list; for instance, if the 6 dice are rolled an d3 of the faces are 1's, then index 0 of count will be 3.Most references to count will be shifted back by one; ie. to check how many times 4 has been rolled, you look at the (four minus one)th index. This is because you can't roll a 0
+        count = [0,0,0,0,0,0]
+        #This is the array of how many times the integers 1-6 are represented 
+
+        for roll in dice_roll:
+            #Roll corresponds to the calue of a single dice roll (integer 1-6)
+            #add one to the corresponding place in our "count" array
+            count[roll-1] +=1 
+            #This is counting how many of each number we have in our array. 
+
+        for face in range (1,7):
+            number = number
+            #This is for possible dice values of 1-6
+            if face in range(1,7):
+                if face == 1:
+                    if number >=3:
+                        #i-1 is the position of the integer we are looking for in the count array wince we set our range as 1-6 but the array counts as 1-5
+                        score +=(number-2)*1000;
+                        #We have the minus two here because the first two (ie. if you get a pair of numbers) we do not care about the scores.
+                    else:
+                        score +=100*number
+                if face==5:
+                    if number >=3:
+                        score += (number-2)*500
+                    else: score += 50 * number
+                else:
+                    if number >=3:
+                        score += number*face*100
+                    
+
+
+
     @staticmethod  # input: tuple of integers that represent one to six rolled dice
     def calculate_score(roll):
         print("calculate score")
@@ -120,13 +157,15 @@ class GameLogic:
         score = 0
         ordered_roll = sorted(roll)
 
-        for potato in score_list1:
-            #Here potato in scorelist is saying score list at i. i is potato or the place in the score list as we iterate through it.
-            if set(potato[0]).issubset(ordered_roll):
-                #Here we are checking if the from ordered roll is in any of the full lines in the line in the sorted list (which we have assigned to the variable potato)
-                print("found a match! ", potato[0], " found in ", potato[1])
-                score += potato[1]
-        return score
+        def checkScore(roll)
+
+        # for potato in score_list1:
+        #     #Here potato in scorelist is saying score list at i. i is potato or the place in the score list as we iterate through it.
+        #     if set(potato[0]).issubset(ordered_roll):
+        #         #Here we are checking if the from ordered roll is in any of the full lines in the line in the sorted list (which we have assigned to the variable potato)
+        #         print("found a match! ", potato[0], " found in ", potato[1])
+        #         score += potato[1]
+        # return score
 
     # return integer score according to rules of game
 
@@ -139,6 +178,9 @@ class GameLogic:
     #TODO - We need to split up the roll tuple we get to look for multiple tuples in the score array.
 
 #Using the collection - we could count the amount of numbers in the roll that we take in, take the most common of the sorted data, and then compare THOSE TUPLES with the items in the list most common in the scores list or some other way to compare
+
+
+
 
 
 if __name__ == "__main__":
