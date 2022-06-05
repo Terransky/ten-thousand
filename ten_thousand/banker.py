@@ -2,7 +2,7 @@
 # from game_logic import GameLogic
 
 class Banker:
-    """docstring"""
+    """Shelves and banks points"""
 
     def __init__(self, balance=0, shelved=0):
         # balance is total, shelf is temporary round score
