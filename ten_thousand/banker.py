@@ -1,3 +1,9 @@
+# from game_logic import GameLogic
+
+# score = 0
+
+# def showScore(roll):
+#     return (GameLogic.calculate_score(roll))
 
 class Banker:
     """docstring"""
@@ -14,3 +20,7 @@ class Banker:
     def clear_shelf(self):  # clear shelf points
         pass
 
+
+if __name__ == "__main__":
+    pass
+    # print(showScore((5,)))

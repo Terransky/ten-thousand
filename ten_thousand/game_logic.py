@@ -1,6 +1,4 @@
 import random
-import itertools
-
 
 class GameLogic:
     """docstring"""
