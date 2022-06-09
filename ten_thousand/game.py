@@ -5,9 +5,12 @@ try:
 except:
     from banker import Banker
     from game_logic import GameLogic
+
+
 # This takes in both situations of using pytest to run these as modules or running the script locally
 
 game_logic = GameLogic()
+banker = Banker()
 
 
 class Game:
@@ -20,14 +23,12 @@ class Game:
 
     round = 1
 
-    score = 0
-
     def __init__(self) -> None:
         pass
 
     def play(self, roller=None):
         """
-        This method displays welcome message the terminal and initiate the game.
+        This method displays welcome message the terminal and initiates the game.
         Two out of four tests passed.
         The function is incomplete
         """
@@ -35,18 +36,39 @@ class Game:
         usr_input = input("> ").lower()
         if usr_input == "y" or usr_input == "yes":
             # Will need to loop through this line of code somehow
-
-            quit = """Thanks for playing. You earned {} points""".format(
-                Game.score)
-
+            while True:
+                quit = f"Thanks for playing. You earned {banker.balance} points"
             # This is a one line for loop to make all of the numbers from the dice roll (from the game logic function) from the tuple into strings
             # The gamelogic part of this previous code line is to instantiate a Gamelogic class item from the Gamelogic file, and call the roll_dice method on the number of die we are rolling.
             # All of this is a really fancy one line map.
-
-            display = """Starting round {}\nRolling {} dice...""".format(
-                Game.round, Game.die)
-
-            display2 = f"*** {self.rolling(roller)} ***\nEnter dice to keep, or (q)uit:"
+                display = f"Starting round {Game.round}\nRolling {Game.die} dice..."
+                nums = self.rolling(roller)
+                display2 = f"*** {nums} ***\nEnter dice to keep, or (q)uit:"
+                nums_tuple = tuple([int(num) for num in nums.split()])
+                banker.shelf(game_logic.calculate_score(nums_tuple))
+                print(display)
+                print(display2)
+                usr_input = input("> ").lower()
+                game_logic.calculate_score(nums_tuple)
+                if usr_input in nums:
+                    Game.die -= 1
+                    display3 = f"You have {banker.shelved} unbanked points and {Game.die} dice remaining\n(r)oll again, (b)ank your points or (q)uit:"
+                    print(display3)
+                    usr_input = input("> ").lower()
+                    # You banked 50 points in round 1
+                    # Total score is 50 points
+                if usr_input == "q" or usr_input == "quit":
+                    break
+                if usr_input == "b" or usr_input == "bank":
+                    display4 = f"You banked {banker.shelved} points in round {Game.round}"
+                    display5 = f"Total score is {banker.shelved} points"
+                    print(display4)
+                    print(display5)
+                    banker.bank()
+                    Game.round += 1
+                    Game.die = 6
+                if usr_input == "r" or usr_input == "roll":
+                    self.rolling()
 
             # TO DO NEXT: If roller is not none, then we need to parse the numbers from the text file into the die that are returned. Need to implement this. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -54,15 +76,8 @@ class Game:
 
             # print (display, numbers, thing_three)
 
-            print(display)
-            print(display2)
-
-            yes_or_quit = input("> ").lower()
-            if yes_or_quit == "q":
-                print(quit)
-            else:
-                pass
-
+            display6 = f"Thanks for playing. You earned {banker.balance} points"
+            print(display6)
         elif usr_input == "n" or usr_input == "no":
             print(Game.no)
 
@@ -76,6 +91,7 @@ class Game:
             list_of_die = [str(number)
                            for number in game_logic.roll_dice(Game.die)]
         return ' '.join(list_of_die)
+
 
 if __name__ == "__main__":
     new_game = Game()

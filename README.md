@@ -30,11 +30,11 @@ Test
 Status
 
 1. We have implemented play() method on Game class in game.py
-1. We are currently working on getting tests 3 and 4 to pass.
+1. We are currently working on getting test 4 to pass.
 
 Test of Note:
 
 1. Passed all of the test in version_1
-1. Passed 2 test in version_2
+1. Passed 3 test in version_2
 
 
