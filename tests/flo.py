@@ -55,7 +55,6 @@ def diff(game_play_func, path="", sample=""):
 
         assert len(roll) == num, f"unexpected number of dice {num}"
 
-
         return roll
 
     # store the "real" print & input so we can restore them later
