@@ -1,3 +1,4 @@
+
 try:
     from ten_thousand.banker import Banker
     from ten_thousand.game_logic import GameLogic
@@ -15,9 +16,10 @@ class Game:
 
     no = """OK. Maybe another time"""
 
-    # class variables
     die = 6
+
     round = 1
+
     score = 0
 
     def __init__(self) -> None:
@@ -25,7 +27,6 @@ class Game:
 
     def play(self, roller=None):
         """
-
 
         """
         print(Game.intro)
@@ -36,20 +37,16 @@ class Game:
             quit = """Thanks for playing. You earned {} points""".format(
                 Game.score)
 
-            list_of_die = [str(number)
-                           for number in game_logic.roll_dice(Game.die)]
             # This is a one line for loop to make all of the numbers from the dice roll (from the game logic function) from the tuple into strings
             # The gamelogic part of this previous code line is to instantiate a Gamelogic class item from the Gamelogic file, and call the roll_dice method on the number of die we are rolling.
             # All of this is a really fancy one line map.
-            gambler = ' '.join(list_of_die)
 
             display = """Starting round {}\nRolling {} dice...""".format(
-                round, Game.die)
-            display2 = f"*** hi ***\nEnter dice to keep, or (q)uit:"
+                Game.round, Game.die)
+
+            display2 = f"*** {self.rolling(roller)} ***\nEnter dice to keep, or (q)uit:"
 
             # TO DO NEXT: If roller is not none, then we need to parse the numbers from the text file into the die that are returned. Need to implement this. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-            # numbers = """*** {} ***""".format(gambler)
 
             # thing_three = """Enter dice to keep, or (q)uit:"""
 
@@ -67,18 +64,14 @@ class Game:
         elif usr_input == "n" or usr_input == "no":
             print(Game.no)
 
-    def rolling(self, roller):
-
+    def rolling(self, roller=None):
         dice = ""
-        # print(roller)
-
         if roller:
             dice = "4 4 5 2 3 1"
         else:
             list_of_die = [str(number)
                            for number in game_logic.roll_dice(Game.die)]
             dice = ' '.join(list_of_die)
-        print(dice)
         return dice
 
 
