@@ -5,6 +5,7 @@ A virtual replication of a dice game called Ten Thousand, perhaps more popularly
 its trademarked name Farkle. 
 * Version 1.00 - Currently employs a classes that contain methods to roll one to six 
 dice of random integers between 1-6, score them, and bank them.
+* Version 1.00 - Extend Ten Thousand game started in previous class to get the game in playable state.
 
 ## Collaborators: Tony, Aoife, Jae, JJ
 
