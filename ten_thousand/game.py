@@ -27,7 +27,9 @@ class Game:
 
     def play(self, roller=None):
         """
-
+        This method displays welcome message the terminal and initiate the game.
+        Two out of four tests passed.
+        The function is incomplete
         """
         print(Game.intro)
         usr_input = input("> ").lower()
