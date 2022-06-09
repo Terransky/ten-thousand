@@ -10,6 +10,10 @@ class GameLogic:
 
     @staticmethod  # input: integer between 1 and 6, representing number of die
     def roll_dice(dice):
+        """
+        This method returns a tuple of randomly generated dice set.
+        The used a module called random to generate six random numbers from 1 to 6.
+        """
 
         if 1 <= dice <= 6:
 
@@ -26,6 +30,10 @@ class GameLogic:
 
     @staticmethod  # input: tuple of integers that represent one to six rolled dice
     def calculate_score(dice_roll_tuple):
+        """
+        This method calculates the score of the player per the dice 10,000 rulebook. 
+        We used nested if/else statements to account for different configurations/combinations of dice set.
+        """
         dice_roll = list(dice_roll_tuple)
         print(dice_roll)
         score = 0

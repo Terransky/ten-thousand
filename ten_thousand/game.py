@@ -20,6 +20,9 @@ class Game:
     
 
     def play(self, roller=None):
+        """
+        
+        """
         print(Game.intro)
         usr_input = input("> ").lower()
         if usr_input == "y" or usr_input == "yes":
@@ -34,8 +37,6 @@ class Game:
             # The gamelogic part of this previous code line is to instantiate a Gamelogic class item from the Gamelogic file, and call the roll_dice method on the number of die we are rolling. 
             # All of this is a really fancy one line map. 
             gambler = ' '.join(list_of_die)
-            
-            
             display = """Starting round {}\nRolling {} dice...""".format(round, die)
             display2 = """*** 4 4 5 2 3 1 ***\nEnter dice to keep, or (q)uit:"""
 
