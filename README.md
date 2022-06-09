@@ -10,7 +10,8 @@ dice of random integers between 1-6, score them, and bank them.
 ## Collaborators: Tony, Aoife, Jae, JJ
 
 ### Links and Resources
-[How to play Ten Thousand](https://en.wikipedia.org/wiki/Dice_10000)
+1. [How to play Ten Thousand](https://en.wikipedia.org/wiki/Dice_10000)
+1. [Link to main](ten_thousand/game.py)
 
 
 Setup
