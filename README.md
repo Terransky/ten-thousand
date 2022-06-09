@@ -1,9 +1,16 @@
-# Lab 6 - Ten Thousand Game
+# Lab 7 - Ten Thousand Game 
 
-### Collaborators: Tony, Aoife, Jae, JJ
+## Project Description
+A virtual replication of a dice game called Ten Thousand, perhaps more popularly known by
+its trademarked name Farkle. 
+* Version 1.00 - Currently employs a classes that contain methods to roll one to six 
+dice of random integers between 1-6, score them, and bank them.
 
+## Collaborators: Tony, Aoife, Jae, JJ
 
-Links and Resources
+### Links and Resources
+[How to play Ten Thousand](https://en.wikipedia.org/wiki/Dice_10000)
+
 
 Setup
 1. .env requirements (where applicable)
