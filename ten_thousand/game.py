@@ -66,16 +66,16 @@ class Game:
         elif usr_input == "n" or usr_input == "no":
             print(Game.no)
 
-    def rolling(self, roller=None):
+    def rolling(self, roller):
         dice = ""
+        list_of_die = []
         if roller:
-            dice = "4 4 5 2 3 1"
+            list_of_die = [str(number)
+                           for number in roller(6)]
         else:
             list_of_die = [str(number)
                            for number in game_logic.roll_dice(Game.die)]
-            dice = ' '.join(list_of_die)
-        return dice
-
+        return ' '.join(list_of_die)
 
 if __name__ == "__main__":
     new_game = Game()
