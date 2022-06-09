@@ -11,7 +11,10 @@ class Banker:
 
 
 
-    def shelf(self, shelf_points):  # input: amount of points(integer) to add to shelf
+    def shelf(self, shelf_points):
+        """
+        input: amount of points(integer) to add to shelf
+        """
         self.shelved = shelf_points
         # output: no return, temporarily stores unbanked points
 
