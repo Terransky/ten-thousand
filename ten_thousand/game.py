@@ -25,6 +25,9 @@ class Game:
 
 
     def play(self, roller=None):
+        """
+        
+        """
         print(Game.intro)
         usr_input = input("> ").lower()
         if usr_input == "y" or usr_input == "yes":
@@ -40,6 +43,7 @@ class Game:
 
             display = """Starting round {}\nRolling {} dice...""".format(round, Game.die)
             display2 = f"*** {self.rolling()} ***\nEnter dice to keep, or (q)uit:"
+
 
             #TO DO NEXT: If roller is not none, then we need to parse the numbers from the text file into the die that are returned. Need to implement this. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 
