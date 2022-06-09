@@ -9,8 +9,6 @@ class Banker:
         self.balance = balance
         self.shelved = shelved
 
-
-
     def shelf(self, shelf_points):
         """
         input: amount of points(integer) to add to shelf
@@ -26,8 +24,3 @@ class Banker:
 
     def clear_shelf(self):  # clear shelf points
         self.shelved = 0
-
-
-
-if __name__ == "__main__":
-    pass
