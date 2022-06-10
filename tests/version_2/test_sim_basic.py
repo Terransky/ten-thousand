@@ -25,9 +25,9 @@ def test_single_bank():
     assert not diffs, diffs
 
 
-# def test_bank_first_for_two_rounds():
-#     game = Game()
-#     diffs = diff(
-#         game.play, path="tests/version_2/bank_first_for_two_rounds.sim.txt"
-#     )
-#     assert not diffs, diffs
+def test_bank_first_for_two_rounds():
+    game = Game()
+    diffs = diff(
+        game.play, path="tests/version_2/bank_first_for_two_rounds.sim.txt"
+    )
+    assert not diffs, diffs

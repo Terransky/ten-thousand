@@ -36,7 +36,10 @@ class GameLogic:
         """
         dice_roll = list(dice_roll_tuple)
         score = 0
-        # count stores the number of times a specific score has been rolled in the list; for instance, if the 6 dice are rolled an d3 of the faces are 1's, then index 0 of count will be 3.Most references to count will be shifted back by one; ie. to check how many times 4 has been rolled, you look at the (four minus one)th index. This is because you can't roll a 0
+        # count stores the number of times a specific score has been rolled in the list; for instance, if the 6 dice
+        # are rolled an d3 of the faces are 1's, then index 0 of count will be 3.Most references to count will be
+        # shifted back by one; ie. to check how many times 4 has been rolled, you look at the (four minus one)th
+        # index. This is because you can't roll a 0
         count = [0, 0, 0, 0, 0, 0]
         # This is the array of how many times the integers 1-6 are represented
 
