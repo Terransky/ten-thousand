@@ -38,9 +38,10 @@ class Game:
             # Will need to loop through this line of code somehow
             while True:
                 quit = f"Thanks for playing. You earned {banker.balance} points"
-            # This is a one line for loop to make all of the numbers from the dice roll (from the game logic function) from the tuple into strings
-            # The gamelogic part of this previous code line is to instantiate a Gamelogic class item from the Gamelogic file, and call the roll_dice method on the number of die we are rolling.
-            # All of this is a really fancy one line map.
+            # This is a one line for loop to make all of the numbers from the dice roll (from the game logic
+                # function) from the tuple into strings The gamelogic part of this previous code line is to
+                # instantiate a Gamelogic class item from the Gamelogic file, and call the roll_dice method on the
+                # number of die we are rolling. All of this is a really fancy one line map.
                 display = f"Starting round {Game.round}\nRolling {Game.die} dice..."
                 nums = self.rolling(roller)
                 display2 = f"*** {nums} ***\nEnter dice to keep, or (q)uit:"
@@ -50,9 +51,17 @@ class Game:
                 print(display2)
                 usr_input = input("> ").lower()
                 game_logic.calculate_score(nums_tuple)
-                if usr_input in nums:
-                    Game.die -= 1
-                    display3 = f"You have {banker.shelved} unbanked points and {Game.die} dice remaining\n(r)oll again, (b)ank your points or (q)uit:"
+                if usr_input[0] in nums:
+                    # Clean usr_input from a string to a list of ints that we can work with easily.
+                    keep_nums = [int(num) for num in usr_input]
+                    # Make sure that all the selected nums are actually in the list of rolled nums TODO: Handle edge
+                    #  cases better (ie. don't just ignore bad user inputs, tell the user they're bad.) for now we're
+                    #  just ignoring them
+                    sanitized_keep_nums = [x for x in keep_nums if x in nums_tuple]
+                    banker.shelf(game_logic.calculate_score(sanitized_keep_nums))
+                    Game.die -= len(sanitized_keep_nums)
+                    display3 = f"You have {banker.shelved} unbanked points and {Game.die} dice remaining\n(r)oll " \
+                               f"again, (b)ank your points or (q)uit: "
                     print(display3)
                     usr_input = input("> ").lower()
                     # You banked 50 points in round 1
@@ -70,7 +79,8 @@ class Game:
                 if usr_input == "r" or usr_input == "roll":
                     self.rolling()
 
-            # TO DO NEXT: If roller is not none, then we need to parse the numbers from the text file into the die that are returned. Need to implement this. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            # TO DO NEXT: If roller is not none, then we need to parse the numbers from the text file into the die
+            # that are returned. Need to implement this. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             # thing_three = """Enter dice to keep, or (q)uit:"""
 
@@ -85,9 +95,11 @@ class Game:
         dice = ""
         list_of_die = []
         if roller:
+            # Because of flo.py, roller already returns the list of numbers defined in the text file.
             list_of_die = [str(number)
                            for number in roller(6)]
         else:
+            # in the case that roller isn't defined, roll the dice randomly as normal.
             list_of_die = [str(number)
                            for number in game_logic.roll_dice(Game.die)]
         return ' '.join(list_of_die)
