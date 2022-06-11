@@ -1,7 +1,6 @@
-
-from hashlib import new
 import sys
 
+from pyparsing import nums
 # This takes in both situations of using pytest to run these as modules or running the script locally
 
 try:
@@ -71,6 +70,18 @@ class Game:
         nums_tuple = tuple([int(num) for num in self.nums.split()])
         keep_nums = [int(num) for num in usr_input]
         sanitized_keep_nums = [x for x in keep_nums if x in nums_tuple]
+        # sanitized_keep_nums = list(nums_tuple)
+        # j = list(nums_tuple)
+        # sanitized_keep_nums_1 = []
+        # for x in keep_nums:
+        #     if x in sanitized_keep_nums:
+        #         sanitized_keep_nums_1.append(x)
+        #         sanitized_keep_nums.remove(x)
+        # message = None
+        # for x in keep_nums:
+        #     if keep_nums.count(x) > j.count(x):
+        #         message = "cheater or typo"
+        # if message: print(message)
         self.banker.shelf(self.game_logic.calculate_score(sanitized_keep_nums))
         self.die -= len(sanitized_keep_nums)
         print(f"You have {self.banker.shelved} unbanked points and {self.die} dice remaining\n(r)oll again, (b)ank your points or (q)uit:")
@@ -113,14 +124,18 @@ class Game:
             if self.die <= 0:
                 print("You're out of die")
                 self.bank()
-                break   
+                break
 
     def end_game(self):
-        sys.exit(f"\nThanks for playing. You earned {self.banker.balance} points")
+        print(f"Thanks for playing. You earned {self.banker.balance} points")
+
+    def interruption(self):
+        print(f"Thanks for playing. You earned {self.banker.balance} points")
 
 if __name__ == "__main__":
     try:
         new_game = Game()
         new_game.play()
-    except KeyboardInterrupt:
-        new_game.end_game()
+    except:
+        new_game.interruption()
+
