@@ -48,17 +48,7 @@ class Game:
                 if usr_input == "b" or usr_input == "bank":
                     self.bank()
                 if usr_input == "r" or usr_input == "roll":
-                    while usr_input != "b" or usr_input != "bank" or usr_input != "q" or usr_input != "quit":
-                        self.roll_dice(roller)
-                        usr_input = input("> ").lower()
-                        self.unbanked(usr_input, roller)
-                        usr_input = input("> ").lower()
-                        if usr_input == "b":
-                            self.bank()
-                            break
-                        if self.die <= 0:
-                            self.bank()
-                            break
+                    self.roll(roller)
                 if usr_input == "q" or usr_input == "quit":
                     break
                 if self.banker.balance >= 10000:
@@ -99,6 +89,19 @@ class Game:
             self.list_of_die = [str(number)
                 for number in self.game_logic.roll_dice(self.die)]
         return ' '.join(self.list_of_die)
+    
+    def roll(self, roller):
+        while usr_input != "b" or usr_input != "bank" or usr_input != "q" or usr_input != "quit":
+            self.roll_dice(roller)
+            usr_input = input("> ").lower()
+            self.unbanked(usr_input, roller)
+            usr_input = input("> ").lower()
+            if usr_input == "b":
+                self.bank()
+                break
+            if self.die <= 0:
+                self.bank()
+                break   
 
     def end_game(self):
         print(f"Thanks for playing. You earned {self.banker.balance} points")
