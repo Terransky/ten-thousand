@@ -1,4 +1,7 @@
 
+from hashlib import new
+import sys
+
 # This takes in both situations of using pytest to run these as modules or running the script locally
 
 try:
@@ -113,8 +116,11 @@ class Game:
                 break   
 
     def end_game(self):
-        print(f"Thanks for playing. You earned {self.banker.balance} points")
+        sys.exit(f"\nThanks for playing. You earned {self.banker.balance} points")
 
 if __name__ == "__main__":
-    new_game = Game()
-    new_game.play()
+    try:
+        new_game = Game()
+        new_game.play()
+    except KeyboardInterrupt:
+        new_game.end_game()
