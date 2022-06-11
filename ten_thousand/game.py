@@ -17,6 +17,7 @@ class Game:
         self.banker = Banker()
         self.keep_nums = []
         self.sanitized_keep_nums = []
+        self.list_of_die = []
         self.nums_tuple = ()
         self.nums = ""
 
@@ -89,14 +90,13 @@ class Game:
         self.die = 6
 
     def rolling(self, roller):
-        list_of_die = []
         if roller:
-            list_of_die = [str(number)
+            self.list_of_die = [str(number)
                 for number in roller(self.die)]
         else:
-            list_of_die = [str(number)
+            self.list_of_die = [str(number)
                 for number in self.game_logic.roll_dice(self.die)]
-        return ' '.join(list_of_die)
+        return ' '.join(self.list_of_die)
 
     def end_game(self):
         print(f"Thanks for playing. You earned {self.banker.balance} points")
