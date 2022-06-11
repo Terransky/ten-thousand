@@ -15,10 +15,6 @@ class Game:
         self.round = 1
         self.game_logic = GameLogic()
         self.banker = Banker()
-        self.keep_nums = []
-        self.sanitized_keep_nums = []
-        self.list_of_die = []
-        self.nums_tuple = ()
         self.nums = ""
 
     def play(self, roller=None):
@@ -41,7 +37,7 @@ class Game:
                 self.rolled_dice(roller)
                 usr_input = input("> ").lower()
                 if usr_input[0] in self.nums:
-                    self.unbanked(usr_input)
+                    self.shelf(usr_input)
                     usr_input = input("> ").lower()
                 if usr_input == "b" or usr_input == "bank":
                     self.bank()
@@ -65,15 +61,15 @@ class Game:
         self.nums = self.rolling_dice(roller)
         print(f"Rolling {self.die} dice...\n*** {self.nums} ***\nEnter dice to keep, or (q)uit:")
 
-    def unbanked(self, usr_input):
+    def shelf(self, usr_input):
         """
-        This method keeps track of the dice and unbanked scores.
+        This method keeps track of the dice and scores in the shelfes.
         """
-        self.nums_tuple = tuple([int(num) for num in self.nums.split()])
-        self.keep_nums = [int(num) for num in usr_input]
-        self.sanitized_keep_nums = [x for x in self.keep_nums if x in self.nums_tuple]
-        self.banker.shelf(self.game_logic.calculate_score(self.sanitized_keep_nums))
-        self.die -= len(self.sanitized_keep_nums)
+        nums_tuple = tuple([int(num) for num in self.nums.split()])
+        keep_nums = [int(num) for num in usr_input]
+        sanitized_keep_nums = [x for x in keep_nums if x in nums_tuple]
+        self.banker.shelf(self.game_logic.calculate_score(sanitized_keep_nums))
+        self.die -= len(sanitized_keep_nums)
         print(f"You have {self.banker.shelved} unbanked points and {self.die} dice remaining\n(r)oll again, (b)ank your points or (q)uit:")
 
     def bank(self):
@@ -90,13 +86,9 @@ class Game:
         """
         This method rolls the dice.
         """
-        if roller:
-            self.list_of_die = [str(number)
-                for number in roller(self.die)]
-        else:
-            self.list_of_die = [str(number)
-                for number in self.game_logic.roll_dice(self.die)]
-        return ' '.join(self.list_of_die)
+        int_list_of_die = roller(self.die) or self.game_logic.roll_dice(self.die)
+        str_list_of_die = [str(number) for number in int_list_of_die]
+        return ' '.join(str_list_of_die)
     
     def roll_again(self, roller):
         """
@@ -105,7 +97,7 @@ class Game:
         while usr_input != "b" or usr_input != "bank" or usr_input != "q" or usr_input != "quit":
             self.rolled_dice(roller)
             usr_input = input("> ").lower()
-            self.unbanked(usr_input, roller)
+            self.sheld(usr_input, roller)
             usr_input = input("> ").lower()
             if usr_input == "b":
                 self.bank()
