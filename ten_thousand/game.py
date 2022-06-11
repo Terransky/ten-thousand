@@ -17,6 +17,7 @@ class Game:
         self.banker = Banker()
         self.keep_nums = []
         self.sanitized_keep_nums = []
+        self.list_of_die = []
         self.nums_tuple = ()
         self.nums = ""
 
@@ -38,9 +39,8 @@ class Game:
             # This is a one line for loop to make all of the numbers from the dice roll (from the game logic function) from the tuple into strings
             # The gamelogic part of this previous code line is to instantiate a Gamelogic class item from the Gamelogic file, and call the roll_dice method on the number of die we are rolling.
             # All of this is a really fancy one line map.
-                print(f"Starting round {self.round}\nRolling {self.die} dice...")
-                self.nums = self.rolling(roller)
-                print(f"*** {self.nums} ***\nEnter dice to keep, or (q)uit:")
+                print(f"Starting round {self.round}")
+                self.roll_dice(roller)
                 usr_input = input("> ").lower()
                 if usr_input[0] in self.nums:
                     self.unbanked(usr_input)
@@ -49,8 +49,7 @@ class Game:
                     self.bank()
                 if usr_input == "r" or usr_input == "roll":
                     while usr_input != "b" or usr_input != "bank" or usr_input != "q" or usr_input != "quit":
-                        self.nums = self.rolling(roller)
-                        print(f"Rolling {self.die} dice...*** {self.nums} ***\nEnter dice to keep, or (q)uit:")
+                        self.roll_dice(roller)
                         usr_input = input("> ").lower()
                         self.unbanked(usr_input, roller)
                         usr_input = input("> ").lower()
@@ -73,6 +72,10 @@ class Game:
         elif usr_input == "n" or usr_input == "no":
             print( "OK. Maybe another time")
 
+    def roll_dice(self, roller):
+        self.nums = self.rolling(roller)
+        print(f"Rolling {self.die} dice...\n*** {self.nums} ***\nEnter dice to keep, or (q)uit:")
+
     def unbanked(self, usr_input):
         self.nums_tuple = tuple([int(num) for num in self.nums.split()])
         self.keep_nums = [int(num) for num in usr_input]
@@ -89,14 +92,13 @@ class Game:
         self.die = 6
 
     def rolling(self, roller):
-        list_of_die = []
         if roller:
-            list_of_die = [str(number)
+            self.list_of_die = [str(number)
                 for number in roller(self.die)]
         else:
-            list_of_die = [str(number)
+            self.list_of_die = [str(number)
                 for number in self.game_logic.roll_dice(self.die)]
-        return ' '.join(list_of_die)
+        return ' '.join(self.list_of_die)
 
     def end_game(self):
         print(f"Thanks for playing. You earned {self.banker.balance} points")
