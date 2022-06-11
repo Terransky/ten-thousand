@@ -18,7 +18,7 @@ class Game:
         self.game_logic = GameLogic()
         self.banker = Banker()
         self.nums = ""
-        self.dice_tuple = None
+        self.dice_tuple = None  # keeps dice tuple for future comparisons
 
     def play(self, roller=None):
         """
@@ -65,11 +65,11 @@ class Game:
         self.nums = self.rolling_dice(roller)
         print(f"Rolling {self.die} dice...\n*** {self.nums} ***")
 
-        if self.game_logic.calculate_score(self.dice_tuple) == 0:
-            self.zilch()
+        if self.game_logic.calculate_score(self.dice_tuple) == 0:  # calculates held dice score
+            self.zilch()  # prints zilch statement
             self.banker.shelved = 0
-            self.bank()
-            self.roll_again()
+            self.bank()  # updates round and balance
+            self.roll_again()  # continues game to next round in play function
 
         else:
             print(f"Enter dice to keep, or (q)uit:")
