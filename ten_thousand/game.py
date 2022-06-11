@@ -51,11 +51,9 @@ class Game:
                     break
                 if self.banker.balance >= 10000:
                     break
-
             # TO DO NEXT: If roller is not none, then we need to parse the numbers from the text file into the die that are returned. Need to implement this. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             # thing_three = """Enter dice to keep, or (q)uit:"""
             # print (display, numbers, thing_three)
-
             self.end_game()
         elif usr_input == "n" or usr_input == "no":
             print( "OK. Maybe another time")
@@ -88,7 +86,7 @@ class Game:
         self.round += 1
         self.die = 6
 
-    def rolling_dice(self, roller):
+    def rolling_dice(self, roller)  -> str:
         """
         This method rolls the dice.
         """
