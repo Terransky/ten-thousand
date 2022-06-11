@@ -24,8 +24,6 @@ class Game:
     def play(self, roller=None):
         """
         This method displays welcome message the terminal and initiates the game.
-        Two out of four tests passed.
-        The function is incomplete
         """
         print("Welcome to Ten Thousand\n(y)es to play or (n)o to decline")
         usr_input = input("> ").lower()
@@ -40,7 +38,7 @@ class Game:
             # The gamelogic part of this previous code line is to instantiate a Gamelogic class item from the Gamelogic file, and call the roll_dice method on the number of die we are rolling.
             # All of this is a really fancy one line map.
                 print(f"Starting round {self.round}")
-                self.roll_dice(roller)
+                self.rolled_dice(roller)
                 usr_input = input("> ").lower()
                 if usr_input[0] in self.nums:
                     self.unbanked(usr_input)
@@ -48,7 +46,7 @@ class Game:
                 if usr_input == "b" or usr_input == "bank":
                     self.bank()
                 if usr_input == "r" or usr_input == "roll":
-                    self.roll(roller)
+                    self.roll_again(roller)
                 if usr_input == "q" or usr_input == "quit":
                     break
                 if self.banker.balance >= 10000:
@@ -62,11 +60,17 @@ class Game:
         elif usr_input == "n" or usr_input == "no":
             print( "OK. Maybe another time")
 
-    def roll_dice(self, roller):
-        self.nums = self.rolling(roller)
+    def rolled_dice(self, roller):
+        """
+        This method displays the rolled dice.
+        """
+        self.nums = self.rolling_dice(roller)
         print(f"Rolling {self.die} dice...\n*** {self.nums} ***\nEnter dice to keep, or (q)uit:")
 
     def unbanked(self, usr_input):
+        """
+        This method keeps track of the dice and unbanked scores.
+        """
         self.nums_tuple = tuple([int(num) for num in self.nums.split()])
         self.keep_nums = [int(num) for num in usr_input]
         self.sanitized_keep_nums = [x for x in self.keep_nums if x in self.nums_tuple]
@@ -75,13 +79,19 @@ class Game:
         print(f"You have {self.banker.shelved} unbanked points and {self.die} dice remaining\n(r)oll again, (b)ank your points or (q)uit:")
 
     def bank(self):
+        """
+        This method banks the score, clears the shelf and ends the current round.
+        """
         print(f"You banked {self.banker.shelved} points in round {self.round}")
         self.banker.bank()
         print(f"Total score is {self.banker.balance} points")
         self.round += 1
         self.die = 6
 
-    def rolling(self, roller):
+    def rolling_dice(self, roller):
+        """
+        This method rolls the dice.
+        """
         if roller:
             self.list_of_die = [str(number)
                 for number in roller(self.die)]
@@ -90,9 +100,12 @@ class Game:
                 for number in self.game_logic.roll_dice(self.die)]
         return ' '.join(self.list_of_die)
     
-    def roll(self, roller):
+    def roll_again(self, roller):
+        """
+        This method allows the user to roll the dice again in the current round of game.
+        """
         while usr_input != "b" or usr_input != "bank" or usr_input != "q" or usr_input != "quit":
-            self.roll_dice(roller)
+            self.rolled_dice(roller)
             usr_input = input("> ").lower()
             self.unbanked(usr_input, roller)
             usr_input = input("> ").lower()
