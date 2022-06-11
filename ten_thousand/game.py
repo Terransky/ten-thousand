@@ -42,7 +42,7 @@ class Game:
                 if usr_input == "b" or usr_input == "bank":
                     self.bank()
                 if usr_input == "r" or usr_input == "roll":
-                    self.roll_again(roller)
+                    self.roll_again(roller, usr_input)
                 if usr_input == "q" or usr_input == "quit":
                     break
                 if self.banker.balance >= 10000:
@@ -86,23 +86,27 @@ class Game:
         """
         This method rolls the dice.
         """
-        int_list_of_die = roller(self.die) or self.game_logic.roll_dice(self.die)
+        if roller:
+            int_list_of_die = roller(self.die)
+        else:
+            int_list_of_die = self.game_logic.roll_dice(self.die)
         str_list_of_die = [str(number) for number in int_list_of_die]
         return ' '.join(str_list_of_die)
     
-    def roll_again(self, roller):
+    def roll_again(self, roller, usr_input):
         """
         This method allows the user to roll the dice again in the current round of game.
         """
         while usr_input != "b" or usr_input != "bank" or usr_input != "q" or usr_input != "quit":
             self.rolled_dice(roller)
             usr_input = input("> ").lower()
-            self.sheld(usr_input, roller)
+            self.shelf(usr_input)
             usr_input = input("> ").lower()
             if usr_input == "b":
                 self.bank()
                 break
             if self.die <= 0:
+                print("You're out of die")
                 self.bank()
                 break   
 
