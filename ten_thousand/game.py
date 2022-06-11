@@ -90,8 +90,7 @@ class Game:
             int_list_of_die = roller(self.die)
         else:
             int_list_of_die = self.game_logic.roll_dice(self.die)
-        str_list_of_die = [str(number) for number in int_list_of_die]
-        return ' '.join(str_list_of_die)
+        return ' '.join([str(number) for number in int_list_of_die])
     
     def roll_again(self, roller, usr_input):
         """
