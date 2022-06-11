@@ -41,7 +41,7 @@ class Game:
                 self.rolled_dice(roller)
                 usr_input = input("> ").lower()
                 if usr_input[0] in self.nums:
-                    self.unbanked(usr_input)
+                    self.shelf(usr_input)
                     usr_input = input("> ").lower()
                 if usr_input == "b" or usr_input == "bank":
                     self.bank()
@@ -65,9 +65,9 @@ class Game:
         self.nums = self.rolling_dice(roller)
         print(f"Rolling {self.die} dice...\n*** {self.nums} ***\nEnter dice to keep, or (q)uit:")
 
-    def unbanked(self, usr_input):
+    def shelf(self, usr_input):
         """
-        This method keeps track of the dice and unbanked scores.
+        This method keeps track of the dice and scores in the shelfes.
         """
         self.nums_tuple = tuple([int(num) for num in self.nums.split()])
         self.keep_nums = [int(num) for num in usr_input]
@@ -105,7 +105,7 @@ class Game:
         while usr_input != "b" or usr_input != "bank" or usr_input != "q" or usr_input != "quit":
             self.rolled_dice(roller)
             usr_input = input("> ").lower()
-            self.unbanked(usr_input, roller)
+            self.sheld(usr_input, roller)
             usr_input = input("> ").lower()
             if usr_input == "b":
                 self.bank()
