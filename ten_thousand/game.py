@@ -63,7 +63,7 @@ class Game:
 
     def shelf(self, usr_input):
         """
-        This method keeps track of the dice and scores in the shelfes.
+        This method keeps track of the dice and scores in the shelf.
         """
         nums_tuple = tuple([int(num) for num in self.nums.split()])
         keep_nums = [int(num) for num in usr_input]
@@ -104,6 +104,9 @@ class Game:
             usr_input = input("> ").lower()
             if usr_input == "b":
                 self.bank()
+                break
+            if usr_input == "q":
+                self.end_game()
                 break
             if self.die <= 0:
                 print("You're out of die")
