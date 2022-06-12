@@ -64,18 +64,28 @@ class GameLogic:
             score += 0
 
         # If we roll [2, 2, 3, 3, 6, 6] count will be [0,2,2,0,0,2]
-        elif count == [0, 2, 2, 0, 0, 2]:
+        # the first count is the LIST count,
+        # with the formatted dice rolls as explained above. The `.count()` part is a builtin python function that
+        # shows how many times an integer appears in an array. This statement just checks if the user has any 3 pairs
+        # of dice.
+        elif count.count(2) == 3:
             score += 1500
 
-       # If we roll [1, 1, 1, 2, 2, 2] count will be [3,3,0,0,0,0]
-        elif count == [0, 2, 2, 0, 0, 2]:
-            score += 0
+        # If we roll [1, 1, 1, 2, 2, 2] count will be [3,3,0,0,0,0]
+        # We're not sure if this is supposed to be a special
+        # case for ALL rolls which have two triples, or if this was just an example that is scored as normally
+        # according to the other rules. If it's the former, then use basically the same syntax as the doubles checker
+        # above. For now we're leaving it how it is because we're not sure what to do with it.
+        elif count == [3, 3, 0, 0, 0, 0]:
+            score += 1200
 
-       # This else has the math for the other cases that use math to compute the scores from having multiple things in certain values
+        # This else has the math for the other cases that use math to compute the scores from having multiple things
+        # in certain values
         else:
             for face in range(1, 7):
                 number = count[face-1]
-                # The NUMBER of dice with the face value integer we are looking for (aka 4 die that are rolled with 5's faceup)
+                # The NUMBER of dice with the face value integer we are looking for (aka 4 die that are rolled with
+                # 5's faceup)
 
                 if face in range(1, 7):
                     if face == 1:
