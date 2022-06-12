@@ -68,7 +68,7 @@ class Game:
         This method keeps track of the dice and scores in the shelf.
         """
         nums_tuple = tuple([int(num) for num in self.nums.split()])
-        keep_nums = [int(num) for num in list(usr_input)]
+        keep_nums = [int(num) for num in usr_input]
         sanitized_keep_nums = list(nums_tuple)
         j = list(nums_tuple)
         sanitized_keep_nums_1 = []
@@ -96,8 +96,7 @@ class Game:
             else:
                 break
             nums_tuple = tuple([int(num) for num in self.nums.split()])
-            sany_str = usr_input.replace(" ", "")
-            keep_nums = [int(num) for num in list(sany_str)]
+            keep_nums = [int(num) for num in usr_input.split()]
             sanitized_keep_nums = list(nums_tuple)
             j = list(nums_tuple)
             sanitized_keep_nums_1 = []
@@ -105,7 +104,7 @@ class Game:
                 if x in sanitized_keep_nums:
                     sanitized_keep_nums_1.append(x)
                     sanitized_keep_nums.remove(x)
-        die -= len(keep_nums)
+        die -= len(sanitized_keep_nums_1)
         self.die = die
         self.banker.shelf(self.game_logic.calculate_score(sanitized_keep_nums_1))
         print(f"You have {self.banker.shelved} unbanked points and {self.die} dice remaining\n(r)oll again, (b)ank your points or (q)uit:")

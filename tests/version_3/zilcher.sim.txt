@@ -22,4 +22,3 @@ Rolling 6 dice...
 Enter dice to keep, or (q)uit:
 > q
 Thanks for playing. You earned 0 points
-r
