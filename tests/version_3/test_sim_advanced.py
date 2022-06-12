@@ -6,6 +6,7 @@ from ten_thousand.game import Game
 pytestmark = [pytest.mark.version_3]
 
 
+
 def test_repeat_roller():
     """Allow setting aside scoring dice and rolling the rest
     """
@@ -21,6 +22,7 @@ def test_hot_dice():
     assert not diffs, diffs
 
 
+
 def test_cheat_and_fix():
     """Cheating (or typos) should not be allowed.
     Therefore the user's input must be validated
@@ -29,6 +31,7 @@ def test_cheat_and_fix():
 
     diffs = diff(Game().play, path="tests/version_3/cheat_and_fix.sim.txt")
     assert not diffs, diffs
+
 
 
 def test_zilcher():
