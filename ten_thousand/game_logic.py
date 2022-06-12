@@ -116,4 +116,31 @@ class GameLogic:
 
         return score
 
+    @staticmethod
+    def how_many(souffle):
+        """This function is doing the count functionality from the calculate_score. It takes in a tuple (called souffle), turns it into a list(called listerine), and counts how many times each of the values from 1-6 are represented(the count list is renamed abcs)."""
+        listerine = list(souffle)
+        abcs = [0, 0, 0, 0, 0, 0]
+        # This is the array of how many times the integers 1-6 are represented
 
+        for number in listerine:
+            abcs[number-1] += 1
+            # This is counting how many of each number we have in our array. Number -1 is because our numbers 1-6 are reindexed to 0-5 to to into a list. The location in the array (0-5) are getting added a number of the count. 
+        return abcs
+
+
+    def get_scorers(self):
+        pass
+
+    def validate_keepers(roll, keepers):
+        abcroll = GameLogic.how_many(roll)
+        abckeepers = GameLogic.how_many(keepers)
+        if abcroll>abckeepers:
+            
+            if all (number in roll for number in keepers): 
+                return True
+        else:
+            return False
+
+if __name__ == "__main__":
+    print(GameLogic.validate_keepers((1,2,3), (4,5,6)))
