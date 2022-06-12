@@ -18,6 +18,7 @@ class Game:
         self.game_logic = GameLogic()
         self.banker = Banker()
         self.nums = ""
+        self.dice_tuple = None  # keeps dice tuple for future comparisons
 
     def play(self, roller=None):
         """
@@ -57,12 +58,13 @@ class Game:
             self.shelf(usr_input)
             if self.die == 0:
                 self.die = 6
-                self.hot_dice(roller)
+                # self.hot_dice(roller)
             usr_input = input("> ").lower()
 
         if usr_input == "b" or usr_input == "bank":
             self.bank()
         if usr_input == "r" or usr_input == "roll":
+            # print("ROLL AGAIN WAS CALLED FROM GAMEPLAY USR_INPUT = R: " + usr_input)
             self.roll_again(roller, usr_input)
         return usr_input
 
@@ -70,8 +72,19 @@ class Game:
         """
         This method displays the rolled dice.
         """
+        dice_tuple = self.dice_tuple
         self.nums = self.rolling_dice(roller)
-        print(f"Rolling {self.die} dice...\n*** {self.nums} ***\nEnter dice to keep, or (q)uit:")
+        print(f"Rolling {self.die} dice...\n*** {self.nums} ***")
+        potato = [int(x) for x in self.nums.split(" ")]
+        if self.game_logic.calculate_score(potato) == 0:  # calculates held dice score
+            self.zilch()  # prints zilch statement
+            self.banker.shelved = 0
+            self.bank()  # updates round and balance
+            # print("ROLL AGAIN WAS CALLED FROM ROLLED DICE")
+            self.roll_again()  # continues game to next round in play function
+
+        else:
+            print(f"Enter dice to keep, or (q)uit:")
 
     def shelf(self, usr_input):
         """
@@ -92,6 +105,7 @@ class Game:
         #     if keep_nums.count(x) > j.count(x):
         #         message = "cheater or typo"
         # if message: print(message)
+
         self.banker.shelf(self.game_logic.calculate_score(sanitized_keep_nums))
         self.die -= len(sanitized_keep_nums)
         print(
@@ -117,15 +131,21 @@ class Game:
             int_list_of_die = self.game_logic.roll_dice(self.die)
         return ' '.join([str(number) for number in int_list_of_die])
 
-    def roll_again(self, roller, usr_input):
+    def roll_again(self, roller=None, usr_input="b"):
         """
         This method allows the user to roll the dice again in the current round of game.
         """
         while usr_input != "b" or usr_input != "bank" or usr_input != "q" or usr_input != "quit":
             self.rolled_dice(roller)
             usr_input = input("> ").lower()
-            self.shelf(usr_input)
-            usr_input = input("> ").lower()
+            if usr_input[0] in self.nums:
+                # print("this should NOT say Q: " + usr_input + " IF IT SAYS Q SOMETHING IS WRONG")
+                self.shelf(usr_input)
+                if self.die == 0:
+                    self.die = 6
+                    # self.hot_dice(roller)
+                usr_input = input("> ").lower()
+
             if usr_input == "b":
                 self.bank()
                 break
@@ -142,9 +162,15 @@ class Game:
     def interruption(self):
         print(f"Thanks for playing. The game has crashed due to a bug! You earned {self.banker.balance} points")
 
-    def hot_dice(self, roller):
-        # self.gameplay(roller)
-        pass
+    # def hot_dice(self, roller):
+    #     # self.gameplay(roller)
+    #     pass
+
+    @staticmethod
+    def zilch():
+        print("****************************************")
+        print("**        Zilch!!! Round over         **")
+        print("****************************************")
 
 
 if __name__ == "__main__":
