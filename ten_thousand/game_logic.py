@@ -129,18 +129,37 @@ class GameLogic:
         return abcs
 
 
-    def get_scorers(self):
-        pass
-
+    @staticmethod
     def validate_keepers(roll, keepers):
+        """This function is testing whether the items the person wants to keep are in the dice that were rolled. Returns true or false."""
         abcroll = GameLogic.how_many(roll)
         abckeepers = GameLogic.how_many(keepers)
-        if abcroll>abckeepers:
-            
-            if all (number in roll for number in keepers): 
-                return True
+
+        makes_sense = []
+        
+        for number in range (0,6):
+            #This is finding whether every element the user inputs is in the dice roll and making sure they did not enter more of a number than what is in the dice roll    
+            if abcroll[number] >= abckeepers[number]:
+                makes_sense.append(True)
+            else:
+                makes_sense.append(False)
+        # print(makes_sense)
+        if all(makes_sense):
+            #This is checking all of the comparisons and returns true if and only iff all of them pass.
+            return True
         else:
             return False
 
+    def get_scorers(input_tuple):
+        
+        if GameLogic.calculate_score(input_tuple)==0:
+            return False
+        else:
+            return True
+    #This is not working when it gets values from the face_roll function though it is working when run as a script.
+
+
 if __name__ == "__main__":
-    print(GameLogic.validate_keepers((1,2,3), (4,5,6)))
+    # print(GameLogic.validate_keepers((1,2,3), (4,5,6)))
+    print(GameLogic.calculate_score((6, 5, 3, 2, 6, 2)))
+    print(GameLogic.get_scorers((6, 5, 3, 2, 6, 2)))
