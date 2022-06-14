@@ -156,7 +156,7 @@ class GameLogic:
             return False
         else:
             return True
-    #This is not working when it gets values from the face_roll function though it is working when run as a script. When run from the roller it is inputing the tuple as the first element of a tuple instead of as a full tuple.
+    
 
 
 if __name__ == "__main__":

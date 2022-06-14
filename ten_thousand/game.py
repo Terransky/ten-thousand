@@ -69,7 +69,6 @@ class Game:
             self.end_game()
         else:
             #This is the case where integers are entered
-            # CURRENT PROBLEM: Some type of input error with this loop and the cheater function. The roller function is putting in a tuple of values as the first item in a tuple for the self.chosen_die.
             
             self.chosen_die += (tuple(int(num) for num in usr_input))
             # print(self.chosen_die)
@@ -96,11 +95,6 @@ class Game:
         """
         self.random_dice_roll = self.rolling_dice(roller)
         
-        # self.chosen_die = ()
-        # #This resets the chosen_die tuple whenever we get new die or there is an invalid user input.
-        # print(f"*** {self.random_dice_roll} ***\nEnter dice to keep, or (q)uit:")
-        
-        # print(self.random_tuple)
 
         if self.game_logic.get_scorers(self.random_tuple)==True:
             self.chosen_die = ()
