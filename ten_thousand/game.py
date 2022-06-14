@@ -96,19 +96,20 @@ class Game:
         """
         self.random_dice_roll = self.rolling_dice(roller)
         
-        self.chosen_die = ()
-        #This resets the chosen_die tuple whenever we get new die or there is an invalid user input.
-        print(f"*** {self.random_dice_roll} ***\nEnter dice to keep, or (q)uit:")
+        # self.chosen_die = ()
+        # #This resets the chosen_die tuple whenever we get new die or there is an invalid user input.
+        # print(f"*** {self.random_dice_roll} ***\nEnter dice to keep, or (q)uit:")
         
         # print(self.random_tuple)
 
-        # if self.game_logic.get_scorers(self.random_tuple)==True:
-        #     self.chosen_die = ()
-        #     #This resets the chosen_die tuple whenever we get new die or there is an invalid user input.
-        #     print(f"*** {self.random_dice_roll} ***\nEnter dice to keep, or (q)uit:")
-        # else:
-        #     self.zilch(roller)
-        #     #When we roll the dice, we will check whether there is a possible score or not.
+        if self.game_logic.get_scorers(self.random_tuple)==True:
+            self.chosen_die = ()
+            #This resets the chosen_die tuple whenever we get new die or there is an invalid user input.
+            print(f"*** {self.random_dice_roll} ***\nEnter dice to keep, or (q)uit:")
+        else:
+            print(f"*** {self.random_dice_roll} ***")
+            self.zilch(roller)
+            #When we roll the dice, we will check whether there is a possible score or not.
         
 
     

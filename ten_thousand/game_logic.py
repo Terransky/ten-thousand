@@ -150,9 +150,9 @@ class GameLogic:
         else:
             return False
 
-    def get_scorers(input_tuple):
+    def get_scorers(self, input_tuple):
         
-        if GameLogic.calculate_score(input_tuple)==0:
+        if self.calculate_score(input_tuple)==0:
             return False
         else:
             return True
