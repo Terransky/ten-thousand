@@ -32,7 +32,7 @@ Test
 Status
 
 1. We have implemented play() method on Game class in game.py
-1. We are able to implement most functionalities and got most tests to pass
+1. We are able to implement all functionalities including zilch and cheater
 
 Test of Note:
 
