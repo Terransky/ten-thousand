@@ -189,15 +189,16 @@ class Game:
         print(f"Thanks for playing. You earned {self.banker.balance} points")
 
 
-    # def interruption(self):
-    #     print(f"Thanks for playing. The game has crashed due to a bug! You earned {self.banker.balance} points")
+    def interruption(self):
+        print(f"Thanks for playing. The game has crashed due to a bug! You earned {self.banker.balance} points")
 
+    def keyboard_quit(self, message):
+        sys.exit(message)
 
 
 if __name__ == "__main__":
     try:
         new_game = Game()
         new_game.play()
-    except Exception as e:
-        print(f"ERROR: {e}")
-        new_game.interruption()
+    except KeyboardInterrupt:
+        new_game.keyboard_quit('You have pressed CTRL-C so Goodbye!')
