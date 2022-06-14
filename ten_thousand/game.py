@@ -56,6 +56,7 @@ class Game:
         
         in_putty = input("> ").lower()
         usr_input = in_putty.replace(" ", "")
+        # We are taking in the lower case of the input and removing spaces! Advanced test 3 is looking for no spaces!
         
         if usr_input == "b" or usr_input == "bank":
             self.bank(roller)
@@ -69,13 +70,6 @@ class Game:
         else:
             #This is the case where integers are entered
             # CURRENT PROBLEM: Some type of input error with this loop and the cheater function. The roller function is putting in a tuple of values as the first item in a tuple for the self.chosen_die.
-            
-            # if roller:
-            # # roller_choices = (tuple(int(num) for num in usr_input))
-            # # self.chosen_die += (tuple[0] for tuple in roller_choices)
-            #     self.chosen_die = (tuple(int(num) for num in usr_input))
-
-            # # else:
             
             self.chosen_die += (tuple(int(num) for num in usr_input))
             # print(self.chosen_die)
