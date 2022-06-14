@@ -157,7 +157,6 @@ class Game:
                 break
             if self.usr_input == "q":
                 self.end_game()
-                break
             if self.die <= 0:
                 self.bank()
                 break
