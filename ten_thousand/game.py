@@ -95,12 +95,13 @@ class Game:
         This method rolls the dice and displays the rolled dice face values.
         """
         self.random_dice_roll = self.rolling_dice(roller)
-        # print(self.random_tuple)
         
         self.chosen_die = ()
         #This resets the chosen_die tuple whenever we get new die or there is an invalid user input.
         print(f"*** {self.random_dice_roll} ***\nEnter dice to keep, or (q)uit:")
         
+        # print(self.random_tuple)
+
         # if self.game_logic.get_scorers(self.random_tuple)==True:
         #     self.chosen_die = ()
         #     #This resets the chosen_die tuple whenever we get new die or there is an invalid user input.
@@ -114,12 +115,6 @@ class Game:
     def pumpkin_eater(self, roller=None):
         """This method validates whether the dice the user wants to keep are valid"""
         # CURRENT ISSUES: The validate function as written currently is having trouble with more numbers entered than the roll has if the numbers are repeats of the same digit.
-
-        # while True:
-        #     print
-
-        # print(self.random_tuple, self.chosen_die)
-        # print(self.game_logic.validate_keepers(self.random_tuple, self.chosen_die))
 
         
         if self.game_logic.validate_keepers(self.random_tuple, tuple(self.chosen_die)) is False:
