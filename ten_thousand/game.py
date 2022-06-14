@@ -81,17 +81,15 @@ class Game:
             nums_tuple = tuple([int(num) for num in self.nums.split()])
             keep_nums = [int(num) for num in usr_input if num != "q" and num != " "]
             sanitized_keep_nums = list(nums_tuple)
-            self.cheater(keep_nums, sanitized_keep_nums, self.die)
+            self.cheater(keep_nums, sanitized_keep_nums, nums_tuple, sanitized_keep_nums )
         else:
             self.end_game()
 
-    def cheater(self, keep_nums, r_dice, die):
+    def cheater(self, keep_nums, r_dice, nums_tuple, sanitized_keep_nums):
         """
         This methods validates the user input and prevents players from cheating
         """
         message = ""
-        sanitized_keep_nums_1 = []
-        sanitized_keep_nums = []
         usr_input = ""
         while message is not None: 
             message = None
@@ -108,20 +106,14 @@ class Game:
             if usr_input == "q" or usr_input == "quit":
                 self.end_game()
             else:
-                nums_tuple = tuple([int(num) for num in self.nums.split()])
                 keep_nums = [int(num) for num in usr_input if num != " "]
-                sanitized_keep_nums = list(nums_tuple)
                 r_dice = list(nums_tuple)
                 sanitized_keep_nums_1 = []
                 for x in keep_nums:
                     if x in sanitized_keep_nums:
                         sanitized_keep_nums_1.append(x)
                         sanitized_keep_nums.remove(x)
-            if self.game_logic.calculate_score(self.nums_int) == 0:
-                self.zilch()
-                self.bank()
-        die -= len(keep_nums)
-        self.die = die
+        self.die -= len(keep_nums)
         self.banker.shelf(self.game_logic.calculate_score(keep_nums))
         if self.die > 0:
             print(f"You have {self.banker.shelved} unbanked points and {self.die} dice remaining\n(r)oll again, (b)ank your points or (q)uit:")
