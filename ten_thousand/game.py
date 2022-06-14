@@ -21,7 +21,7 @@ class Game:
         #This is the raw random dice roll as a string
         self.random_tuple = ()
         # This is the raw random dice roll as converted to a tuple
-        self.chosen_die = ()
+        self.chosen_die = []
         # This is the tuple of numbers that the USER chooses to keep from the roll
 
     # Plan for rewriting the play function:
@@ -54,7 +54,8 @@ class Game:
     def gameplay(self, roller=None):
         """This function takes in user inputs. If the user inputs are the letters we handle, we route them to the appropriate cases. Else we route the input to the handle dice selection functions. Whenever we are moving between functions, roller needs to be passed so that if the test files are running, the appropriate responses will be applied from the files to the game."""
         
-        usr_input = input("> ").lower()
+        in_putty = input("> ").lower()
+        usr_input = in_putty.replace(" ", "")
         
         if usr_input == "b" or usr_input == "bank":
             self.bank(roller)
@@ -70,14 +71,15 @@ class Game:
             # CURRENT PROBLEM: Some type of input error with this loop and the cheater function. The roller function is putting in a tuple of values as the first item in a tuple for the self.chosen_die.
             
             # if roller:
-            #     roller_choices = (tuple(int(num) for num in usr_input))
-            #     self.chosen_die += (tuple[0] for tuple in roller_choices)
-                
-            # else:
+            # # roller_choices = (tuple(int(num) for num in usr_input))
+            # # self.chosen_die += (tuple[0] for tuple in roller_choices)
+            #     self.chosen_die = (tuple(int(num) for num in usr_input))
+
+            # # else:
+            
             self.chosen_die += (tuple(int(num) for num in usr_input))
-
-
             # print(self.chosen_die)
+
             self.pumpkin_eater(roller)
             
             
@@ -119,9 +121,12 @@ class Game:
         """This method validates whether the dice the user wants to keep are valid"""
         # CURRENT ISSUES: The validate function as written currently is having trouble with more numbers entered than the roll has if the numbers are repeats of the same digit.
 
+        # while True:
+        #     print
+
         # print(self.random_tuple, self.chosen_die)
         # print(self.game_logic.validate_keepers(self.random_tuple, self.chosen_die))
-        
+
         
         if self.game_logic.validate_keepers(self.random_tuple, tuple(self.chosen_die)) is False:
             self.chosen_die =()
@@ -194,7 +199,7 @@ class Game:
         self.banker.shelved = 0
         self.bank(roller)
 
-   # When we write the get_scorers method in GameLogic we can call this function.
+        # When we write the get_scorers method in GameLogic we can call this function.
 
     def end_game(self):
         print(f"Thanks for playing. You earned {self.banker.balance} points")

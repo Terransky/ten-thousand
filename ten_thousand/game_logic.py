@@ -156,10 +156,10 @@ class GameLogic:
             return False
         else:
             return True
-    #This is not working when it gets values from the face_roll function though it is working when run as a script.
+    #This is not working when it gets values from the face_roll function though it is working when run as a script. When run from the roller it is inputing the tuple as the first element of a tuple instead of as a full tuple.
 
 
 if __name__ == "__main__":
     # print(GameLogic.validate_keepers((1,2,3), (4,5,6)))
-    print(GameLogic.calculate_score((6, 5, 3, 2, 6, 2)))
+    print(GameLogic.calculate_score((6, 5, 3, 2, 6, 2),))
     print(GameLogic.get_scorers((6, 5, 3, 2, 6, 2)))
