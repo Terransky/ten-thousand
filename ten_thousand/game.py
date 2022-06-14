@@ -23,7 +23,8 @@ class Game:
         self.game_logic = GameLogic()
         self.banker = Banker()
         self.nums = ""
-        self.zilch = 1
+        self.zilch = None
+
     def play(self, roller=None):
             """
             This method displays welcome message the terminal and initiates the game.
@@ -35,10 +36,10 @@ class Game:
                 usr_input = input("> ").lower()
             if usr_input == "y" or usr_input == "yes":
                 while True:
-                    self.zilch = 1
+                    self.zilch = None
                     print(f"Starting round {self.round}")
                     self.rolled_dice(roller)
-                    if self.zilch != 0:
+                    if self.zilch:
                         usr_input = input("> ").lower()
                     else:
                         usr_input = "b"
@@ -68,7 +69,7 @@ class Game:
         if self.zilch == 0:
             Game.zilch()
             self.banker.clear_shelf()
-        if self.game_logic.calculate_score(self.nums_int) != 0:
+        if self.zilch != 0:
             print("Enter dice to keep, or (q)uit:")
 
 
@@ -82,9 +83,12 @@ class Game:
             sanitized_keep_nums = list(nums_tuple)
             self.cheater(keep_nums, sanitized_keep_nums, self.die)
         else:
-            sys.exit(1)
+            self.end_game()
 
-    def cheater(self, keep_nums, j, die):
+    def cheater(self, keep_nums, r_dice, die):
+        """
+        This methods validates the user input and prevents players from cheating
+        """
         message = ""
         sanitized_keep_nums_1 = []
         sanitized_keep_nums = []
@@ -93,7 +97,7 @@ class Game:
             message = None
             usr_input = ""
             for x in keep_nums:
-                if keep_nums.count(x) > j.count(x):
+                if keep_nums.count(x) > r_dice.count(x):
                     message = "Cheater!!! Or possibly made a typo..."         
             if message:
                 print(message)
@@ -107,7 +111,7 @@ class Game:
                 nums_tuple = tuple([int(num) for num in self.nums.split()])
                 keep_nums = [int(num) for num in usr_input if num != " "]
                 sanitized_keep_nums = list(nums_tuple)
-                j = list(nums_tuple)
+                r_dice = list(nums_tuple)
                 sanitized_keep_nums_1 = []
                 for x in keep_nums:
                     if x in sanitized_keep_nums:
@@ -119,7 +123,8 @@ class Game:
         die -= len(keep_nums)
         self.die = die
         self.banker.shelf(self.game_logic.calculate_score(keep_nums))
-        print(f"You have {self.banker.shelved} unbanked points and {self.die} dice remaining\n(r)oll again, (b)ank your points or (q)uit:")
+        if self.die > 0:
+            print(f"You have {self.banker.shelved} unbanked points and {self.die} dice remaining\n(r)oll again, (b)ank your points or (q)uit:")
 
     def bank(self):
         """
@@ -159,7 +164,7 @@ class Game:
                 self.end_game()
                 break
             if self.die <= 0:
-                self.die = 6
+                self.bank()
                 break
 
     def end_game(self):

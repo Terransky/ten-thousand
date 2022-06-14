@@ -38,6 +38,6 @@ Test of Note:
 
 1. Passed all of the tests in version_1
 1. Passed all of the tests in version_2
-2. Passed all 12 tests in the main file of version_3
+2. Passed all of the tests in version_3
 
 
