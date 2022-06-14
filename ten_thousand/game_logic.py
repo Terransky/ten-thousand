@@ -1,5 +1,5 @@
 import random
-
+from collections import Counter
 
 class GameLogic:
     """docstring"""
@@ -129,8 +129,19 @@ class GameLogic:
         return abcs
 
 
-    def get_scorers(self):
-        pass
+    @staticmethod
+    def get_scorers(roll):
+        roll_points = Counter(roll)
+        if (len(roll_points) == 3 and list(roll_points.values()) == [2, 2, 2]) or (len(roll_points) == 6):
+            return roll
+
+        output = []
+        for dice in roll_points:
+            number_of_occurrences = roll_points[dice]
+            if (dice == 1 or dice == 5) or number_of_occurrences >= 3:
+                output += [dice] * number_of_occurrences
+
+        return tuple(output)
 
     def validate_keepers(roll, keepers):
         abcroll = GameLogic.how_many(roll)
@@ -143,4 +154,5 @@ class GameLogic:
             return False
 
 if __name__ == "__main__":
-    print(GameLogic.validate_keepers((1,2,3), (4,5,6)))
+    game_logic = GameLogic()
+    print(game_logic.calculate_score((2,2,2,2)))

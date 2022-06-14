@@ -7,6 +7,7 @@ its trademarked name Farkle.
 dice of random integers between 1-6, score them, and bank them.
 * Version 2.00 - Extend Ten Thousand game started in previous class to get the game in playable state.
 * Version 3.00 - Gets the roller method and and the hot dice method is working. Zilch and cheater still in progress. 
+* Version 4.00 - Zilch and cheater functionality works. 
 
 ## Collaborators: Tony, Aoife, Jae, JJ
 
@@ -31,12 +32,12 @@ Test
 Status
 
 1. We have implemented play() method on Game class in game.py
-1. We are able to implement most functionalities and got most tests to pass
+1. We are able to implement all functionalities including zilch and cheater
 
 Test of Note:
 
 1. Passed all of the tests in version_1
 1. Passed all of the tests in version_2
-2. Passed 2 of 4 tests in the main file of version_3
+2. Passed all 12 tests in the main file of version_3
 
 
