@@ -1,8 +1,6 @@
 import sys
-
 from pyparsing import nums
 
-# This takes in both situations of using pytest to run these as modules or running the script locally
 
 try:
     from ten_thousand.banker import Banker
@@ -12,6 +10,7 @@ except:
     from game_logic import GameLogic
 
 class Game:
+
     def __init__(self) -> None:
         self.die = 6
         self.round = 1
@@ -96,7 +95,7 @@ class Game:
         self.random_dice_roll = self.rolling_dice(roller)
         
 
-        if self.game_logic.get_scorers(self.random_tuple)==True:
+        if self.game_logic.winner_winner(self.random_tuple)==True:
             self.chosen_die = ()
             #This resets the chosen_die tuple whenever we get new die or there is an invalid user input.
             print(f"*** {self.random_dice_roll} ***\nEnter dice to keep, or (q)uit:")
@@ -183,10 +182,11 @@ class Game:
         self.banker.shelved = 0
         self.bank(roller)
 
-        # When we write the get_scorers method in GameLogic we can call this function.
+        # When we write the winner_winner method in GameLogic we can call this function.
 
     def end_game(self):
         print(f"Thanks for playing. You earned {self.banker.balance} points")
+        sys.exit(1)
 
 
     def interruption(self):

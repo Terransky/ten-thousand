@@ -52,7 +52,7 @@ def diff(game_play_func, path="", sample=""):
             sys.exit(1)
 
         roll = rolls.pop(0)
-
+        
         assert len(roll) == num, f"unexpected number of dice {num}"
 
         return roll
