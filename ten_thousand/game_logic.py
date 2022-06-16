@@ -129,10 +129,32 @@ class GameLogic:
         return abcs
 
 
+    def validate_keepers(self, roll, keepers):
+        """This function is testing whether the items the person wants to keep are in the dice that were rolled. Returns true or false."""
+        abcroll = GameLogic.how_many(roll)
+        abckeepers = GameLogic.how_many(keepers)
+
+        makes_sense = []
+        
+        for number in range (0,6):
+            #This is finding whether every element the user inputs is in the dice roll and making sure they did not enter more of a number than what is in the dice roll    
+            if abcroll[number] >= abckeepers[number]:
+                makes_sense.append(True)
+            else:
+                makes_sense.append(False)
+        # print(makes_sense)
+        if all(makes_sense):
+            #This is checking all of the comparisons and returns true if and only iff all of them pass.
+            return True
+        else:
+            return False
+
     @staticmethod
     def get_scorers(roll):
+        """This function takes in a tuple of values and returns a tuple of the die that are scoring."""
         roll_points = Counter(roll)
         if (len(roll_points) == 3 and list(roll_points.values()) == [2, 2, 2]) or (len(roll_points) == 6):
+            # If there three pairs or a straight - return the roll because this counts for points.
             return roll
 
         output = []
@@ -140,19 +162,22 @@ class GameLogic:
             number_of_occurrences = roll_points[dice]
             if (dice == 1 or dice == 5) or number_of_occurrences >= 3:
                 output += [dice] * number_of_occurrences
-
+            # Otherwise return any 1's, 5's, or numbers of the die that show up 3 or more times as these count for points. 
         return tuple(output)
 
-    def validate_keepers(roll, keepers):
-        abcroll = GameLogic.how_many(roll)
-        abckeepers = GameLogic.how_many(keepers)
-        if abcroll>abckeepers:
-            
-            if all (number in roll for number in keepers): 
-                return True
-        else:
+    def winner_winner(self, input_tuple):
+        """This function takes in a tuple, runs the values through calculate score, and returns a boolean as to whether a score is returned."""
+        if self.calculate_score(input_tuple)==0:
             return False
+        else:
+            return True
+    
+
 
 if __name__ == "__main__":
+    # print(GameLogic.validate_keepers((1,2,3), (4,5,6)))
+    print(GameLogic.calculate_score((6, 5, 3, 2, 6, 2),))
+    print(GameLogic.get_scorers((6, 5, 3, 2, 6, 2)))
+
     game_logic = GameLogic()
     print(game_logic.calculate_score((2,2,2,2)))
