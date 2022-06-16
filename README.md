@@ -1,4 +1,4 @@
-# Lab 8 - Ten Thousand Game 
+# Lab 9 - Ten Thousand Game 
 
 ## Project Description
 A virtual replication of a dice game called Ten Thousand, perhaps more popularly known by
@@ -8,6 +8,7 @@ dice of random integers between 1-6, score them, and bank them.
 * Version 2.00 - Extend Ten Thousand game started in previous class to get the game in playable state.
 * Version 3.00 - Gets the roller method and and the hot dice method is working. Zilch and cheater still in progress. 
 * Version 4.00 - Zilch and cheater functionality works. 
+* Version 5.00 - 4 functional bots designed by each member of the team
 
 ## Collaborators: Tony, Aoife, Jae, JJ
 
@@ -37,7 +38,7 @@ Status
 Test of Note:
 
 1. Passed all of the tests in version_1
-1. Passed all of the tests in version_2
-2. Passed all of the tests in version_3
-
+2. Passed all of the tests in version_2
+3. Passed all of the tests in version_3
+4. All bots average 10,000 points or better for 2000 games
 
