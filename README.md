@@ -8,7 +8,7 @@ dice of random integers between 1-6, score them, and bank them.
 * Version 2.00 - Extend Ten Thousand game started in previous class to get the game in playable state.
 * Version 3.00 - Gets the roller method and and the hot dice method is working. Zilch and cheater still in progress. 
 * Version 4.00 - Zilch and cheater functionality works. 
-* Version 5.00 - 4 functional bots designed by each member of the team
+* Version 5.00 - 4 functional bots designed by each member of the team. bots.py does not work with our code.
 
 ## Collaborators: Tony, Aoife, Jae, JJ
 
