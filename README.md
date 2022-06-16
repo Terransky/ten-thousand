@@ -40,5 +40,5 @@ Test of Note:
 1. Passed all of the tests in version_1
 2. Passed all of the tests in version_2
 3. Passed all of the tests in version_3
-4. All bots average 10,000 points or better for 2000 games
+4. All bots average 9,000 points or better for 2000 games and beats NervousNellie
 
