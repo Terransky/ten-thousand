@@ -19,8 +19,9 @@ dice of random integers between 1-6, score them, and bank them.
 
 Setup
 1. .env requirements (where applicable)
-1. .venv
-1. pip install pytest
+2. .venv
+3. pip install pytest
+4. pip install randcrack
 
 Initialize
 
